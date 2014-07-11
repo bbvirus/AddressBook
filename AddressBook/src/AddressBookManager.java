@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,6 +23,9 @@ public class AddressBookManager {
 		loadWholeAddressBookDataInMemory();
 	}
 	
+	/*
+	 * storage.txt에 저장돼 있는 주소록 정보들을 모두 읽어서 addressBook에 저장하는 메서드
+	 */
 	private void loadWholeAddressBookDataInMemory() {
 		try {
 			File file = new File(Constants.ADDRESS_BOOK_FILE_PATH);
@@ -53,7 +58,7 @@ public class AddressBookManager {
 	public void inputForInsert() {
 		System.out.println("민번(숫자) 이름 전화번호 형식으로 입력해 주세요.");
 		Scanner scanner = new Scanner(System.in);
-		String data = scanner.next();
+		String data = scanner.nextLine();
 		String[] buffer = Util.parseData(data);
 		
 		int id = Integer.parseInt(buffer[0]);
@@ -65,7 +70,19 @@ public class AddressBookManager {
 	/*
 	 * 사용자로부터 입력 받은 데이터를 파일과 메모리에 저장하는 메서드
 	 */
+	@SuppressWarnings("resource")
 	public void insert(int id, String personalInfo) {
+		// 파일에 저장하는 부분
+		try {
+			File file = new File(Constants.ADDRESS_BOOK_FILE_PATH);
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.append(id + " " + personalInfo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// 메모리에 저장하는 부분
 		this.addressBook.put(id, personalInfo);
 	}
 
