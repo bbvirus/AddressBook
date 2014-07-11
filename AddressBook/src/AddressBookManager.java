@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,7 +8,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
-
 
 public class AddressBookManager {
 	HashMap<Integer, String> addressBook;
@@ -29,6 +27,9 @@ public class AddressBookManager {
 	private void loadWholeAddressBookDataInMemory() {
 		try {
 			File file = new File(Constants.ADDRESS_BOOK_FILE_PATH);
+			if(!file.exists()) {
+				file.createNewFile();
+			}
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			
@@ -46,8 +47,7 @@ public class AddressBookManager {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} catch (FileNotFoundException e) {
-			System.out.println("HERE!!!!!!!!!!!");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
