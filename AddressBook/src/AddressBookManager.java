@@ -47,6 +47,7 @@ public class AddressBookManager {
 				e.printStackTrace();
 			}
 		} catch (FileNotFoundException e) {
+			System.out.println("HERE!!!!!!!!!!!");
 			e.printStackTrace();
 		}
 	}
@@ -63,21 +64,22 @@ public class AddressBookManager {
 		
 		int id = Integer.parseInt(buffer[0]);
 		String personalInfo = buffer[1];
-		
 		insert(id, personalInfo);
 	}
 	
 	/*
 	 * 사용자로부터 입력 받은 데이터를 파일과 메모리에 저장하는 메서드
 	 */
-	@SuppressWarnings("resource")
 	public void insert(int id, String personalInfo) {
 		// 파일에 저장하는 부분
 		try {
 			File file = new File(Constants.ADDRESS_BOOK_FILE_PATH);
-			FileWriter fw = new FileWriter(file);
+			FileWriter fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.append(id + " " + personalInfo);
+			bw.write(id + " " + personalInfo);
+			bw.newLine();
+			bw.flush();
+			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
