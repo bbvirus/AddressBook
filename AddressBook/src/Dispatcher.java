@@ -24,6 +24,7 @@ public class Dispatcher {
 				case "test-insert" : testClass.testInsert(addressBookManager); break;
 				case "test-search" : testClass.testSearch(addressBookManager); break;
 				case "exit" : System.out.println("바이바이~"); System.exit(1);
+				default : System.out.println("똑바로 입력해 주세요-_-;");
 			}
 			
 			System.out.println(message);

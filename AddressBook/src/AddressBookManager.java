@@ -51,7 +51,7 @@ public class AddressBookManager {
 	 */
 	@SuppressWarnings("resource")
 	public void inputForInsert() {
-		
+		System.out.println("민번(숫자) 이름 전화번호 형식으로 입력해 주세요.");
 		Scanner scanner = new Scanner(System.in);
 		String data = scanner.next();
 		String[] buffer = Util.parseData(data);
@@ -72,15 +72,19 @@ public class AddressBookManager {
 	/*
 	 * 검색을 위해 사용자로부터 검색어 입력을 받는 메서드
 	 */
+	@SuppressWarnings("resource")
 	public void inputForFindOne() {
-		
+		System.out.println("검색할 민번을 입력해주세요(숫자).");
+		Scanner scanner = new Scanner(System.in);
+		int id = Integer.parseInt(scanner.next());
+		findOne(id);
 	}
 
 	/*
 	 * 사용자로부터 입력 받은 검색어로 데이터를 검색해 출력해주는 메서드
 	 */
 	public void findOne(int id) {
-		
+		System.out.println(id + " " + this.addressBook.get(id));
 	}
 	
 	
