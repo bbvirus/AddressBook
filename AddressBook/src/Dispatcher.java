@@ -1,8 +1,7 @@
 
 public class Dispatcher {
 
-	public void listen() {
-		// TODO Auto-generated method stub
+	public void listen(AddressBookManager addressBookManager, TestClass testClass) {
 		
 	}
 

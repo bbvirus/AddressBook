@@ -2,9 +2,10 @@
 public class MainClass {
 
 	public static void main(String[] args) {
-		AddressBookInMemory addressBook = new AddressBookInMemory();
+		AddressBookManager addressBookManager = new AddressBookManager();
 		Dispatcher dispatcher = new Dispatcher();
-		dispatcher.listen();
+		TestClass testClass = new TestClass();
+		dispatcher.listen(addressBookManager, testClass);
 	}
 
 }
