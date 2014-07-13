@@ -60,6 +60,11 @@ public class AddressBookManager {
 		System.out.println("민번(숫자) 이름 전화번호 형식으로 입력해 주세요.");
 		Scanner scanner = new Scanner(System.in);
 		String data = scanner.nextLine();
+		// validation check
+		if(Util.insertValidation(data, 3) == false){
+			System.out.println("잘못된 입력입니다. 다시 확인해주세요!");
+			return;
+		}
 		String[] buffer = Util.parseData(data);
 		
 		int id = Integer.parseInt(buffer[0]);
