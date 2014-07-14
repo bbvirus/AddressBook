@@ -69,6 +69,10 @@ public class AddressBookManager {
 		
 		int id = Integer.parseInt(buffer[0]);
 		String personalInfo = buffer[1];
+		if(Util.alreadyHasKey(id, addressBook)){
+			System.out.println("민번이 중복됩니다. 다시 확인해주세요!");
+			return;
+		}
 		insert(id, personalInfo);
 	}
 	

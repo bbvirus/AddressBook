@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 
 public class Util {
 	public static String[] parseData(String data) {
@@ -35,5 +37,9 @@ public class Util {
 	 */
 	private static int countParam(String data){
 		return data.split(" ").length;
+	}
+
+	public static boolean alreadyHasKey(int id, HashMap<Integer, String> addressBook) {
+		return addressBook.keySet().contains(id);
 	}
 }
