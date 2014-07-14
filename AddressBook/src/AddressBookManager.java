@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -80,18 +78,9 @@ public class AddressBookManager {
 	 * 사용자로부터 입력 받은 데이터를 파일과 메모리에 저장하는 메서드
 	 */
 	public void insert(int id, String personalInfo) {
-		// 파일에 저장하는 부분
-		try {
-			File file = new File(Constants.ADDRESS_BOOK_FILE_PATH);
-			FileWriter fw = new FileWriter(file, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(id + " " + personalInfo);
-			bw.newLine();
-			bw.flush();
-			bw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		// 스레드를 생성해 파일에 저장하는 부분
+		InsertThread insertThread = new InsertThread(id, personalInfo);
+		insertThread.start();
 		
 		// 메모리에 저장하는 부분
 		this.addressBook.put(id, personalInfo);
